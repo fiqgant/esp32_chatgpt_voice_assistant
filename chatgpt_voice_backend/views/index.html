@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat GPT Voice Assistant</title>
+    <link rel="icon" href="https://cdn.oaistatic.com/_next/static/media/favicon-32x32.630a2b99.png" type="image/png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="user">
+            <div class="text-container bubble">User: {{transcription}}</div>
+            <div class="icon-container">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+        <div id="waveform"></div>
+        <div class="button-container">
+            <button id="playButton" class="button">
+                <i class="fas fa-play"></i>
+                <span class="tooltip">Play Audio</span>
+            </button>
+            <button id="downloadButton" class="button">
+                <i class="fas fa-download"></i>
+                <span class="tooltip">Download Signal Data</span>
+            </button>
+        </div>
+        <div class="divider"></div>
+        <div class="bot">
+            <div class="icon-container">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="text-container bubble">{{gptResponse}}</div>
+        </div>
+        <div class="bot">
+            <div class="icon-container">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="text-container bubble">{{responseTime}} ms</div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('downloadButton').addEventListener('click', () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({{signalData}}));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "signal_data.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        });
+
+        // Initialize WaveSurfer.js
+        const wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#4CAF50', // Green color for the waveform
+            progressColor: '#388E3C', // Darker green for the progress
+            minPxPerSec: 100, // Set this to control the zoom level
+            url: '/resources/recording.wav',  // URL to the uploaded recording file
+        });
+
+        document.getElementById('playButton').addEventListener('click', () => {
+            wavesurfer.play();
+        });
+
+        // Setup WebSocket connection
+        const ws = new WebSocket(`ws://${window.location.host}`);
+
+        ws.onmessage = (event) => {
+            if (event.data === 'refresh') {
+                window.location.reload();
+            }
+        };
+    </script>
+</body>
+</html>

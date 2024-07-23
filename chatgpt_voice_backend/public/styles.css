@@ -1,0 +1,152 @@
+body {
+  background-color: #121212; /* Dark background color */
+  color: #ffffff; /* White text color */
+  font-family: Arial, sans-serif;
+}
+
+.bubble {
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  display: inline-block;
+  max-width: 70%;
+  font-size: 1.2em;
+}
+
+.user, .bot {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.user {
+  justify-content: flex-end;
+}
+
+.bot {
+  justify-content: flex-start;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
+  font-size: 1.5em;
+}
+
+.user .icon-container {
+  background-color: #007aff; /* Blue background for user icon */
+  color: white; /* White icon color for user */
+}
+
+.bot .icon-container {
+  background-color: #e5e5ea; /* Grey background for robot icon */
+  color: black; /* Black icon color for robot */
+}
+
+.user .bubble {
+  background-color: #007aff; /* Blue color for user bubble */
+  color: white; /* White text for user bubble */
+}
+
+.bot .bubble {
+  background-color: #e5e5ea; /* Light gray color for bot bubble */
+  color: black; /* Black text for bot bubble */
+}
+
+.text-container {
+  flex: 1;
+}
+
+.signal {
+  width: 100%;
+  height: 200px;
+  margin-top: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+}
+
+.divider {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border: none;
+  border-radius: 50%;
+  background-color: #007aff; /* Blue background */
+  color: white; /* White icon color */
+  font-size: 1.5em;
+  cursor: pointer;
+  position: relative;
+}
+
+.button i {
+  pointer-events: none;
+}
+
+.button .tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position the tooltip above the button */
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* Arrow pointing down */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+#waveform {
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+  overflow-x: scroll; /* Allow horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping */
+}
