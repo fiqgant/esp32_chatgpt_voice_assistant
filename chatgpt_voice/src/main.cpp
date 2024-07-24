@@ -5,8 +5,8 @@
 #include <HTTPClient.h>
 
 // Wi-Fi creds
-#define WIFI_SSID "Hehehe"
-#define WIFI_PASSWORD "Hello1234!@#"
+#define WIFI_SSID "your_wifi_ssid"
+#define WIFI_PASSWORD "your_wifi_password"
 
 
 // RTOS Ticks Delay
@@ -53,9 +53,9 @@ const int headerSize = 44;
 bool isWIFIConnected;
 
 // Node Js server Adresses
-const char *serverUploadUrl = "http://192.168.1.9:3000/uploadAudio";
-const char *serverBroadcastUrl = "http://192.168.1.9:3000/broadcastAudio";
-const char *broadcastPermitionUrl = "http://192.168.1.9:3000/checkVariable";
+const char *serverUploadUrl = "http://your_server_ip:3000/uploadAudio";
+const char *serverBroadcastUrl = "http://your_server_ip:3000/broadcastAudio";
+const char *broadcastPermitionUrl = "http://your_server_ip:3000/checkVariable";
 
 // Prototypes
 void SPIFFSInit();
